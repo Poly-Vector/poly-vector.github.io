@@ -1,39 +1,27 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Getting Clients IP</title>
-    <style>
-        p,
-        h1 {
-            color: green;
-        }
-    </style>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hi!</h1>
+    <p class="ip-pull">Your IP is: </p>
 
     <script>
+        var ip = document.querySelector('.ip-pull');
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.ipify.org?format=json', true);
 
-        /* Add "https://api.ipify.org?format=json" statement
-                   this will communicate with the ipify servers in
-                   order to retrieve the IP address $.getJSON will
-                   load JSON-encoded data from the server using a
-                   GET HTTP request */
-
-        $.getJSON("https://api.ipify.org?format=json", function (data) {
-
-            // Setting text of element P with id gfg
-            $("#gfg").html(data.ip);
-        })
+        xhr.onload = function() {
+            if (this.status == 200) {
+                var data = JSON.parse(this.responseText);
+                ip.innerHTML += data.ip;
+            }
+        };
     </script>
-</head>
-
-<body>
-    <center>
-        <h1>GeeksforGeeks</h1>
-        <h3>Public IP Address of user is:</h3>
-        <p id="gfg"></p>
-
-    </center>
 </body>
+</html>
