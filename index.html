@@ -8,17 +8,17 @@
 </head>
 <body>
     <h1>Hi!</h1>
-    <p id="ip-pull"></p>
+    <p id="main"></p>
 
     <script>
         const http = new XMLHttpRequest()
-        const url = "https://api.db-ip.com/v2/free/self"
+        const url = "http://api.open-notify.org/astros.json"
 
         http.open("GET", url)
         http.send()
 
         http.onreadystatechange = () => {
-            document.getElementById("ip-pull").innerHTML = "Your IP is: " + http.responseText
+            document.getElementById("main").innerHTML = "There are " + http.responseText.number + " people in space"
             console.log(http)
         }
     </script>
