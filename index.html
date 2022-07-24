@@ -19,6 +19,7 @@
 
         http.onreadystatechange = () => {
             document.getElementById("ip-pull").innerHTML = "Your IP is: " + http.responseText
+            console.log(http)
         }
     </script>
 </body>
