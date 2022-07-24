@@ -8,20 +8,18 @@
 </head>
 <body>
     <h1>Hi!</h1>
-    <p class="ip-pull">Your IP is: </p>
+    <p id="ip-pull"></p>
 
     <script>
-        var ip = document.querySelector('.ip-pull');
-        
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://api.ipify.org?format=json', true);
+        const http = new XMLHttpRequest()
+        const url = "http://ip-api.com/json/"
 
-        xhr.onload = function() {
-            if (this.status == 200) {
-                var data = JSON.parse(this.responseText);
-                ip.innerHTML += data.ip;
-            }
-        };
+        http.open("GET", url)
+        http.send()
+
+        http.onreadystatechange = () => {
+            document.getElementById("ip-pull").innerHTML = "Your IP is: " + http.responseText
+        }
     </script>
 </body>
 </html>
